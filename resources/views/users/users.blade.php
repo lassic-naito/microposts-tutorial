@@ -14,5 +14,5 @@
             </li>
         @endforeach
     </ul>
-    {{ $users->links('pagenation::bootstap-4') }}
+    {{ $users->links('pagination::bootstrap-4') }}
 @endif
