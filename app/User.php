@@ -34,13 +34,18 @@ class User extends Authenticatable
     
     public function followings()
     {
-        return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();    
+        return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
     }
-    
+
     public function followers()
     {
         return $this->belongsToMany(User::class, 'user_follow', 'follow_id', 'user_id')->withTimestamps();
     }
+    
+    // public function favorites()
+    // {
+    //     return $this->belongsToMany(User::class, 'favorites', 'user_id', 'micropost_id')->withTimestamps();
+    // }
     
     public function follow($userId)
     {
@@ -75,6 +80,33 @@ class User extends Authenticatable
             return false;
         }
     }
+    
+    // public function favorite($micropostId){
+    //     //既にお気に入り登録しているかの確認
+    //     $exist = $this->is_favorite($micropostId);
+
+    //     if ($exist){
+    //         return false;
+    //     }else{
+    //         $this->favorites()->attach($micropostId);
+    //         return true;
+    //     }
+    // }
+    
+    // public function unfavorite($micropostId)
+    // {
+    //     // 既にお気に入り登録しているかの確認
+    //     $exist = $this->is_favorite($micropostId);
+        
+    //     if ($exist) {
+    //         // 既にお気に入り登録していれば外す
+    //         $this->favorites()->detach($micropostId);
+    //         return true;
+    //     } else {
+    //         // 未登録であれば何もしない
+    //         return false;
+    //     }
+    // }
     
     public function is_following($userId)
     {
